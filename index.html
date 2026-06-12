@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RC Lab Registration</title>
+    <style>
+      :root {
+        --bg: #f5f7fa;
+        --panel: #ffffff;
+        --ink: #1d2433;
+        --muted: #667085;
+        --line: #d8dee8;
+        --accent: #e53131;
+        --accent-dark: #b91f1f;
+        --track: #202938;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: Arial, Helvetica, sans-serif;
+        color: var(--ink);
+        background:
+          linear-gradient(rgba(245, 247, 250, 0.08), rgba(245, 247, 250, 0.16)),
+          url("WhatsApp Image 2026-06-10 at 16.42.40.jpeg") center / cover fixed;
+      }
+
+      .page {
+        min-height: 100vh;
+        padding: 28px clamp(18px, 4vw, 56px) 48px;
+      }
+
+      .topbar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 150px;
+      }
+
+      .logo {
+        width: min(880px, 92vw);
+        height: 116px;
+        border-radius: 8px;
+        filter: drop-shadow(0 14px 24px rgba(32, 41, 56, 0.28));
+        object-fit: fill;
+      }
+
+      main {
+        width: min(100%, 760px);
+        margin: 28px auto 0;
+      }
+
+      h1 {
+        margin: 0 0 22px;
+        font-size: clamp(30px, 5vw, 52px);
+        line-height: 1;
+        text-align: center;
+      }
+
+      .registration {
+        padding: clamp(20px, 4vw, 34px);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.28);
+        backdrop-filter: blur(2px);
+        box-shadow: 0 20px 55px rgba(32, 41, 56, 0.12);
+      }
+
+      form {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      label {
+        display: grid;
+        gap: 7px;
+        color: var(--accent);
+        font-size: 14px;
+        font-weight: 900;
+        text-shadow: 0 1px 2px rgba(255, 255, 255, 0.72);
+      }
+
+      input,
+      select {
+        width: 100%;
+        min-height: 46px;
+        border: 1px solid var(--line);
+        border-radius: 7px;
+        padding: 0 13px;
+        color: var(--ink);
+        background: #fff;
+        font-size: 16px;
+      }
+
+      input:focus,
+      select:focus {
+        outline: 3px solid rgba(229, 49, 49, 0.16);
+        border-color: var(--accent);
+      }
+
+      .full {
+        grid-column: 1 / -1;
+      }
+
+      button {
+        min-height: 48px;
+        border: 0;
+        border-radius: 7px;
+        color: #fff;
+        background: var(--accent);
+        font-size: 16px;
+        font-weight: 800;
+        cursor: pointer;
+        transition:
+          background 160ms ease,
+          transform 160ms ease;
+      }
+
+      button:hover {
+        background: var(--accent-dark);
+        transform: translateY(-1px);
+      }
+
+      .people {
+        margin-top: 26px;
+      }
+
+      .people-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 12px;
+      }
+
+      h2 {
+        margin: 0;
+        font-size: 22px;
+      }
+
+      .count {
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .list {
+        display: grid;
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .person {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        min-height: 54px;
+        padding: 12px 16px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.32);
+        backdrop-filter: blur(2px);
+      }
+
+      .nickname {
+        min-width: 0;
+        overflow-wrap: anywhere;
+        font-weight: 800;
+      }
+
+      .category {
+        flex: 0 0 auto;
+        min-width: 78px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        color: #fff;
+        background: var(--track);
+        text-align: center;
+        font-size: 13px;
+        font-weight: 800;
+        text-transform: capitalize;
+      }
+
+      .empty {
+        margin: 0;
+        padding: 18px;
+        border: 1px dashed var(--line);
+        border-radius: 8px;
+        color: var(--muted);
+        background: rgba(255, 255, 255, 0.24);
+        backdrop-filter: blur(2px);
+        text-align: center;
+      }
+
+      @media (max-width: 640px) {
+        .page {
+          padding-top: 18px;
+        }
+
+        .topbar {
+          min-height: 104px;
+        }
+
+        .logo {
+          width: 92vw;
+          height: 82px;
+        }
+
+        main {
+          margin-top: 18px;
+        }
+
+        form {
+          grid-template-columns: 1fr;
+        }
+
+        .people-header,
+        .person {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="topbar" aria-label="Page header">
+        <img
+          class="logo"
+          src="rc-lab-logo-transparent.png"
+          alt="RC Lab logo"
+        />
+      </header>
+
+      <main>
+        <h1>RC Lab Registration</h1>
+
+        <section class="registration" aria-label="Registration form">
+          <form id="registrationForm">
+            <label>
+              სახელი
+              <input id="name" name="name" autocomplete="given-name" required />
+            </label>
+
+            <label>
+              გვარი
+              <input id="surname" name="surname" autocomplete="family-name" required />
+            </label>
+
+            <label>
+              ნიკი
+              <input id="nickname" name="nickname" autocomplete="nickname" required />
+            </label>
+
+            <label>
+              ასაკი
+              <select id="age" name="age" required>
+                <option value="">ასაკი</option>
+              </select>
+            </label>
+
+            <label>
+              ტელ. ნომერი
+              <input id="phone" name="phone" type="tel" autocomplete="tel" required />
+            </label>
+
+            <label>
+              კატეგორია
+              <select id="category" name="category" required>
+                <option value="">აირჩიეთ კატეგორია</option>
+                <option value="drift">Drift</option>
+                <option value="race">Race</option>
+              </select>
+            </label>
+
+            <button class="full" type="submit">რეგისტრაცია</button>
+          </form>
+        </section>
+
+        <section class="people" aria-label="Registered people">
+          <div class="people-header">
+            <h2>Registered People</h2>
+            <span class="count" id="registeredCount">0 entries</span>
+          </div>
+          <ul class="list" id="peopleList"></ul>
+          <p class="empty" id="emptyState">No registrations yet.</p>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      const form = document.querySelector("#registrationForm");
+      const ageSelect = document.querySelector("#age");
+      const peopleList = document.querySelector("#peopleList");
+      const emptyState = document.querySelector("#emptyState");
+      const registeredCount = document.querySelector("#registeredCount");
+      let registrations = [];
+
+      for (let age = 6; age <= 80; age += 1) {
+        const option = document.createElement("option");
+        option.value = String(age);
+        option.textContent = String(age);
+        ageSelect.append(option);
+      }
+
+      function renderRegistrations() {
+        peopleList.innerHTML = "";
+        emptyState.hidden = registrations.length > 0;
+        registeredCount.textContent =
+          registrations.length === 1 ? "1 entry" : `${registrations.length} entries`;
+
+        registrations.forEach((person) => {
+          const item = document.createElement("li");
+          item.className = "person";
+
+          const nickname = document.createElement("span");
+          nickname.className = "nickname";
+          nickname.textContent = person.nickname;
+
+          const category = document.createElement("span");
+          category.className = "category";
+          category.textContent = person.category;
+
+          item.append(nickname, category);
+          peopleList.append(item);
+        });
+      }
+
+      async function loadRegistrations() {
+        const response = await fetch("/api/registrations");
+        registrations = await response.json();
+        renderRegistrations();
+      }
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+        const registration = {
+          name: formData.get("name").trim(),
+          surname: formData.get("surname").trim(),
+          nickname: formData.get("nickname").trim(),
+          age: formData.get("age"),
+          phone: formData.get("phone").trim(),
+          category: formData.get("category"),
+        };
+
+        const response = await fetch("/api/registrations", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(registration),
+        });
+
+        if (!response.ok) {
+          alert("Registration could not be saved.");
+          return;
+        }
+
+        registrations = await response.json();
+        renderRegistrations();
+        form.reset();
+        document.querySelector("#name").focus();
+      });
+
+      loadRegistrations().catch(() => {
+        emptyState.textContent = "Could not load registrations.";
+        renderRegistrations();
+      });
+    </script>
+  </body>
+</html>

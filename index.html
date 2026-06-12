@@ -367,7 +367,18 @@
         });
 
         if (!response.ok) {
-          alert("Registration could not be saved.");
+          let message = "Registration could not be saved.";
+
+          try {
+            const error = await response.json();
+            if (error.error) {
+              message = error.error;
+            }
+          } catch {
+            message = `${message} Server returned HTTP ${response.status}.`;
+          }
+
+          alert(message);
           return;
         }
 

@@ -2,3 +2,4 @@ registrations.db
 *.db
 node_modules/
 .env
+api/config.php

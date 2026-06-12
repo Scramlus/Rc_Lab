@@ -336,7 +336,7 @@
       }
 
       async function loadRegistrations() {
-        const response = await fetch("/api/registrations");
+        const response = await fetch("api/registrations.php");
         registrations = await response.json();
         renderRegistrations();
       }
@@ -354,7 +354,7 @@
           category: formData.get("category"),
         };
 
-        const response = await fetch("/api/registrations", {
+        const response = await fetch("api/registrations.php", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

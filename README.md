@@ -1,31 +1,15 @@
 # RC Lab Registration
 
-Simple RC Lab registration page with a Node server and SQLite database.
+Simple RC Lab registration page with a PHP API and MySQL database.
 
-## Local Run
+## cPanel Setup
 
-```powershell
-node server.mjs
-```
+1. Create a MySQL database in cPanel.
+2. Create a MySQL user and give it access to the database.
+3. Open phpMyAdmin and import `database.sql`.
+4. Copy `api/config.example.php` to `api/config.php` on the server.
+5. Put your cPanel database name, user, and password in `api/config.php`.
 
-Open:
+The form saves all fields, but the public page only shows nickname and category.
 
-```text
-http://localhost:3000
-```
-
-## Hosting Notes
-
-Use a Node hosting service. The app needs Node 24 or newer because it uses Node's built-in SQLite module.
-
-Set this environment variable on hosting if you use a persistent disk:
-
-```text
-DATABASE_PATH=/var/data/registrations.db
-```
-
-Start command:
-
-```text
-npm start
-```
+Do not commit `api/config.php` to GitHub because it contains your database password.

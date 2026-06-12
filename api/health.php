@@ -59,9 +59,18 @@ try {
         'message' => 'Database connection and registrations table are ready.',
     ]);
 } catch (PDOException $error) {
-    http_response_code(500);
-    echo json_encode([
+    $response = [
         'ok' => false,
         'error' => 'Database connection failed. Check database name, username, password, and user permissions.',
-    ]);
+    ];
+
+    if (isset($_GET['debug']) && $_GET['debug'] === '1') {
+        $response['debug'] = [
+            'code' => $error->getCode(),
+            'message' => $error->getMessage(),
+        ];
+    }
+
+    http_response_code(500);
+    echo json_encode($response);
 }
